@@ -27,13 +27,18 @@ set smartcase
 set number
 set backspace=indent,eol,start
 set hlsearch
-set tw=0
 set scrolloff=8
+
+""" Text width
+set textwidth=0
+autocmd BufRead *.tex set textwidth=79
 
 """ EasyMotion leader fixing. And I want bi-directional search as default.
 let mapleader=","
 map <Leader> <Plug>(easymotion-prefix)
 nmap <Leader>w <Plug>(easymotion-bd-w)
+nmap <Leader>e <Plug>(easymotion-bd-e)
+nmap <Leader>q <Plug>(easymotion-bd-jk)
 
 """ Ctrl-P, open tab as default.
 let g:ctrlp_prompt_mappings = {
