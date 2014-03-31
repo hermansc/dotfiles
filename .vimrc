@@ -14,6 +14,7 @@ Plugin 'vim-scripts/tComment'
 """ Settings
 syntax on
 filetype indent plugin on
+colorscheme desert
 
 set autoindent
 set smarttab
@@ -79,7 +80,6 @@ set nofoldenable        "dont fold by default
 """ Golang bindings
 au BufRead,BufNewFile *.go set filetype=go
 set encoding=utf-8
-colorscheme desert
 
 """ Puts cursor on same line as when last closing
 if has("autocmd")
