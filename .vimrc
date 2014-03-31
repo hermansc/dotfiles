@@ -8,6 +8,7 @@ call vundle#rc()
 Plugin 'gmarik/vundle'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'kien/ctrlp.vim'
+Plugin 'scrooloose/syntastic'
 
 """ Settings
 syntax on
@@ -33,6 +34,12 @@ set scrolloff=8
 let mapleader=","
 map <Leader> <Plug>(easymotion-prefix)
 nmap <Leader>w <Plug>(easymotion-bd-w)
+
+""" Ctrl-P, open tab as default.
+let g:ctrlp_prompt_mappings = {
+  \ 'AcceptSelection("e")': ['<c-t>'],
+  \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
+\ }
 
 """ Show whitespace at end of lines
 highlight ExtraWhitespace ctermbg=red guibg=red
