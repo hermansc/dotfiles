@@ -9,6 +9,7 @@ Plugin 'gmarik/vundle'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/syntastic'
+Plugin 'vim-scripts/tComment'
 
 """ Settings
 syntax on
@@ -45,14 +46,23 @@ let g:ctrlp_prompt_mappings = {
   \ 'AcceptSelection("e")': ['<c-t>'],
   \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
 \ }
+let g:ctrlp_working_path_mode = ''
+let g:ctrlp_cmd = 'CtrlPMixed'
+
+""" Syntastic
+let g:syntastic_enable_perl_checker = 1
+let g:syntastic_perl_checkers = ['perl']
 
 """ Show whitespace at end of lines
+:autocmd Syntax * syn match ExtraWhitespace /\s\+$\| \+\ze\t/
 highlight ExtraWhitespace ctermbg=red guibg=red
-match ExtraWhitespace /\s\+$/
-autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-autocmd BufWinLeave * call clearmatches()
+
+""" F3 removes EOL spaces
+map <F3> :%s/\(--\)\@<!\s\+$//g<CR> :noh<CR>
+imap <F3> <C-o>:%s/\(--\)\@<!\s\+$//g<CR> <C-o>:noh<CR>
+
+""" tComment, better shortcuts
+map <c-c> <c-_><c-_>
 
 """ Persistent undo
 if has('persistent_undo')
