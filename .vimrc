@@ -28,6 +28,7 @@ set number
 set backspace=indent,eol,start
 set hlsearch
 set scrolloff=8
+set mouse=a
 
 """ Text width
 set textwidth=0
@@ -85,3 +86,11 @@ if has("autocmd")
     au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
         \| exe "normal g'\"" | endif
 endif
+
+""" Automatically set tab-mode if the file is written in tabs
+function Kees_settabs()
+  if len(filter(getbufline(winbufnr(0), 1, 1000), 'v:val =~ "\\t"')) > len(filter(getbufline(winbufnr(0), 1, 1000), 'v:val =~ "    "'))
+    setlocal noet sts=0
+  endif
+endfunction
+autocmd BufReadPost * call Kees_settabs()
