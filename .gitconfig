@@ -1,0 +1,7 @@
+[user]
+	name = Herman Schistad
+	email = herman.schistad@gmail.com
+[push]
+	default = matching
+[core]
+	editor = /usr/bin/vim
