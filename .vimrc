@@ -10,6 +10,7 @@ Plugin 'Lokaltog/vim-easymotion'
 Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'vim-scripts/tComment'
+Plugin 'oplatek/Conque-Shell'
 
 """ Settings
 syntax on
