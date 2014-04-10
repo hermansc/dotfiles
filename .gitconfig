@@ -1,7 +1,12 @@
 [user]
 	name = Herman Schistad
-	email = herman.schistad@gmail.com
 [push]
 	default = matching
 [core]
 	editor = /usr/bin/vim
+[color]
+	ui = true
+[merge]
+	tool = vimdiff
+[include]
+	path = dotfiles/.gitconfig.local
