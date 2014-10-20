@@ -11,6 +11,7 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'vim-scripts/tComment'
 Plugin 'oplatek/Conque-Shell'
+Plugin 'wting/rust.vim'
 
 """ Settings
 syntax on
