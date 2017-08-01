@@ -1,21 +1,22 @@
 """ Vundle package manager
 set nocompatible
 filetype off
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
 """ Plugins
-Plugin 'gmarik/vundle'
-Plugin 'Lokaltog/vim-easymotion'
-Plugin 'kien/ctrlp.vim'
+Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'vim-scripts/tComment'
-Plugin 'oplatek/Conque-Shell'
-Plugin 'wting/rust.vim'
+Plugin 'ntpeters/vim-better-whitespace'
+Plugin 'wincent/command-t'
+Plugin 'Valloric/YouCompleteMe'
 
 """ Settings
-syntax on
+call vundle#end()
 filetype indent plugin on
+
+syntax on
 colorscheme desert
 
 set autoindent
@@ -31,41 +32,24 @@ set number
 set backspace=indent,eol,start
 set hlsearch
 set scrolloff=8
-set mouse=a
 
 """ Text width
 set textwidth=0
-autocmd BufRead *.tex set textwidth=79
 
-""" EasyMotion leader fixing. And I want bi-directional search as default.
-let mapleader=","
-map <Leader> <Plug>(easymotion-prefix)
-nmap <Leader>w <Plug>(easymotion-bd-w)
-nmap <Leader>e <Plug>(easymotion-bd-e)
-nmap <Leader>q <Plug>(easymotion-bd-jk)
-
-""" Ctrl-P, open tab as default.
-let g:ctrlp_prompt_mappings = {
-  \ 'AcceptSelection("e")': ['<c-t>'],
-  \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
-\ }
-let g:ctrlp_working_path_mode = ''
-let g:ctrlp_cmd = 'CtrlPMixed'
-
-""" Syntastic
-let g:syntastic_enable_perl_checker = 1
-let g:syntastic_perl_checkers = ['perl']
-
-""" Show whitespace at end of lines
-:autocmd Syntax * syn match ExtraWhitespace /\s\+$\| \+\ze\t/
-highlight ExtraWhitespace ctermbg=red guibg=red
-
-""" F3 removes EOL spaces
-map <F3> :%s/\(--\)\@<!\s\+$//g<CR> :noh<CR>
-imap <F3> <C-o>:%s/\(--\)\@<!\s\+$//g<CR> <C-o>:noh<CR>
+""" Show whitespace at end of all lines
+let g:better_whitespace_filetypes_blacklist=[]
 
 """ tComment, better shortcuts
 map <c-c> <c-_><c-_>
+
+""" Ignore pyc etc in command T
+set wildignore=*.swp,*.bak,*.pyc,*.class,*.jar,*.gif,*.png,*.jpg
+
+""" Shortcut for jumping to definition in YouCompleteMe
+nnoremap <leader>jd :YcmCompleter GoTo<CR>
+
+""" Disable pylint etc.
+let g:syntastic_python_checkers = ['flake8']
 
 """ Persistent undo
 if has('persistent_undo')
@@ -73,15 +57,6 @@ if has('persistent_undo')
   set undodir=~/.vim/backups
   set undofile
 endif
-
-""" Folding / hide code
-set foldmethod=indent   "fold based on indent
-set foldnestmax=3       "deepest fold is 3 levels
-set nofoldenable        "dont fold by default
-
-""" Golang bindings
-au BufRead,BufNewFile *.go set filetype=go
-set encoding=utf-8
 
 """ Puts cursor on same line as when last closing
 if has("autocmd")
